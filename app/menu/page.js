@@ -1,12 +1,13 @@
-import useNotion from "../hooks/useNotion";
+async function getData() {
+    const res = await fetch(`${process.env.BASE_FETCH_URL}/api/menu`);
+    return res.json();
+}
 
-export default function Home() {
-    const { data, loading, error } = useNotion("/api/menu");
-    console.log(data);
-    if (loading) {
-        return <div>로딩중</div>;
-    } else {
-        return (
+export default async function Page() {
+    const res = await getData();
+    const data = res.response;
+    return (
+        <div className={`app `}>
             <div>
                 {data?.map((item) => {
                     return (
@@ -24,6 +25,6 @@ export default function Home() {
                     );
                 })}
             </div>
-        );
-    }
+        </div>
+    );
 }

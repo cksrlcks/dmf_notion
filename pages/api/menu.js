@@ -1,6 +1,6 @@
 const { getDatabase, MENU_DATABASE_ID } = require("../../lib/notion");
 
-export default async (req, res) => {
+export default async function handler(req, res) {
     const response = await getDatabase(MENU_DATABASE_ID, {
         sorts: [
             {
@@ -14,5 +14,5 @@ export default async (req, res) => {
         ],
     });
 
-    res.status(200).json(response);
-};
+    res.status(200).json({ response });
+}
