@@ -1,11 +1,23 @@
+import { getDatabase, MENU_DATABASE_ID } from "../../lib/notion";
 async function getData() {
-    const res = await fetch(`${process.env.BASE_FETCH_URL}/api/menu`);
-    return res.json();
+    const response = await getDatabase(MENU_DATABASE_ID, {
+        sorts: [
+            {
+                property: "index",
+                direction: "ascending",
+            },
+            {
+                property: "write_date",
+                direction: "descending",
+            },
+        ],
+    });
+
+    return response;
 }
 
 export default async function Page() {
-    const res = await getData();
-    const data = res.response;
+    const data = await getData();
     return (
         <div className={`app `}>
             <div>
