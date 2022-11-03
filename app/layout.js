@@ -1,8 +1,15 @@
 import Nav from "../components/nav";
-import { Noto_Sans } from "@next/font/google";
+import "../styles/global.scss";
+import styles from "./layout.module.css";
+import { Noto_Sans_KR } from "@next/font/google";
 
-const notosans = Noto_Sans({
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
+
+const notosans = Noto_Sans_KR({
     weight: ["400", "500", "700"],
+    subsets: ["korean"],
 });
 
 export default function RootLayout({ children }) {
@@ -13,11 +20,11 @@ export default function RootLayout({ children }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </head>
             <body className={notosans.className}>
-                <div className="app">
-                    <div className="app-nav">
+                <div className={styles.app}>
+                    <div className={styles["app-nav"]}>
                         <Nav />
                     </div>
-                    <div className="app-container">{children}</div>
+                    <div className={styles["app-container"]}>{children}</div>
                 </div>
             </body>
         </html>

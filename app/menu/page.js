@@ -1,3 +1,4 @@
+import tempData from "./data.json"; //임시
 import { getDatabase, MENU_DATABASE_ID } from "../../lib/notion";
 async function getData() {
     const response = await getDatabase(MENU_DATABASE_ID, {
@@ -17,7 +18,8 @@ async function getData() {
 }
 
 export default async function Page() {
-    const data = await getData();
+    //const data = await getData();
+    const data = tempData.results;
     return (
         <div className={`app `}>
             <div>
